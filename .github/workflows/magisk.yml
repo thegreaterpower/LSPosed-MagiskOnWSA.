@@ -412,7 +412,7 @@ jobs:
               </index>
           </resources>
           EOF
-          wine64 ~/makepri.exe new /pr pri /in MicrosoftCorporationII.WindowsSubsystemForAndroid /cf priconfig.xml /of ${{ matrix.arch }}/resources.pri /o
+          wine32 ~/makepri.exe new /pr pri /in MicrosoftCorporationII.WindowsSubsystemForAndroid /cf priconfig.xml /of ${{ matrix.arch }}/resources.pri /o
           sed -i -zE "s/<Resources.*Resources>/<Resources>\n$(cat xml/* | grep -Po '<Resource [^>]*/>' | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g' | sed 's/\//\\\//g')\n<\/Resources>/g" ${{ matrix.arch }}/AppxManifest.xml
       - name: Add extra packages
         run: |
