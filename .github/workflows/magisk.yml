@@ -99,7 +99,9 @@ jobs:
       - name: Dependencies
         run: |
           pip3 install beautifulsoup4 lxml
-          sudo dpkg --add-architecture i386 && apt-get update && apt-get install wine32
+          sudo dpkg --add-architecture i386
+          sudo apt-get update 
+          sudo apt-get install wine32
           sudo apt-get update && sudo apt-get install setools lzip wine winetricks patchelf
           wget -qO- "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/archive/$GITHUB_REF.tar.gz" | sudo tar --wildcards -zxvf- -C ~ --strip-component=2 '*/wine/*' '*/linker/*'
           winetricks msxml6
